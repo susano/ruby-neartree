@@ -32,8 +32,3 @@ The bindings have only been tested on NearTree 2.3.2.
   rtree.find_k_nearest([1.2, 0.5], 3, 2.0) # => [[[2.0, 0.0], 2.0], [[0.0, 0.0], 10.0]]
   rtree.find_k_nearest([1.2, 0.5], 1, 2.0) # => [[[2.0, 0.0], 2.0]]
 
-
-== Building
-
-  rake compile
-
