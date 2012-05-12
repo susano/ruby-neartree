@@ -1,0 +1,39 @@
+= neartree
+
+== Ruby bindings for the NearTree C library
+
+This project implements Ruby bindings for the NearTree C library.  NearTree
+provides an R-Tree structure with fast nearest k-neighbour searches.
+
+The NearTree C library is at:
+
+http://neartree.sourceforge.net/
+
+The bindings have only been tested on NearTree 2.3.2.
+
+
+== Usage
+
+  require 'neartree'
+
+  rtree = NearTree::RTree.new(2) # number of dimensions
+
+  # insert coordinates/value pair
+  # coordinates must be an array of Numeric objects
+  # The value can be any ruby object
+  rtree.insert([ 0.0,  0.0], 10.0) # coordinates, value
+  rtree.insert([ 2.0,  0.0],  2.0)
+  rtree.insert([-2.0, -2.0],  0.0)
+  
+  rtree.find_nearest([  0.5, 0.5]) # => [[0.0, 0.0], 10.0]
+  rtree.find_nearest([100.0, 0.0]) # => [[2.0, 0.0], 2.0]
+  
+  # coordinates, number_of_neighbours, radius
+  rtree.find_k_nearest([1.2, 0.5], 3, 2.0) # => [[[2.0, 0.0], 2.0], [[0.0, 0.0], 10.0]]
+  rtree.find_k_nearest([1.2, 0.5], 1, 2.0) # => [[[2.0, 0.0], 2.0]]
+
+
+== Building
+
+  rake compile
+
